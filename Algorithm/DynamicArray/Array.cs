@@ -65,7 +65,7 @@ namespace Algorithm.DynamicArray
         public void Add(int index,E e)
         {
             if (Size == _data.Length) Resize(2*Capacity);
-            if(index<0 || index>Size) throw new Exception("Require index>=0 and index<Size");
+            if(index<0 || index>=Size) throw new Exception("Require index>=0 and index<Size");
             for (int i = Size-1; i >=index; i--)
             {
                 _data[i+1]=_data[i];
@@ -91,7 +91,7 @@ namespace Algorithm.DynamicArray
         /// <returns></returns>
         public E Remove(int index)
         {
-            if (index < 0 || index > Size) throw new Exception("Require index>=0 and index<Size");
+            if (index < 0 || index >= Size) throw new Exception("Require index>=0 and index<Size");
             E cur = _data[index];
             for (int i = index+1; i < Size; i++)
             {
@@ -99,7 +99,6 @@ namespace Algorithm.DynamicArray
             }
 
             Size--;
-            _data[Size] = default(E);
             if(Size==Capacity/4 && Capacity/2!=0) Resize(Capacity/2);
             return cur;
         }
@@ -154,7 +153,7 @@ namespace Algorithm.DynamicArray
         /// <param name="e">元素值</param>
         public void Set(int index,E e)
         {
-            if (index < 0 || index > Size) throw new Exception("Set failed ,Index is illegal");
+            if (index < 0 || index >= Size) throw new Exception("Set failed ,Index is illegal");
             _data[index] = e;
         }
 
@@ -165,7 +164,7 @@ namespace Algorithm.DynamicArray
         /// <returns></returns>
         public E Get(int index)
         {
-            if(index<0 || index>Size) throw new Exception("Get failed ,Index is illegal");
+            if(index<0 || index>=Size) throw new Exception("Get failed ,Index is illegal");
             return _data[index];
         }
 
